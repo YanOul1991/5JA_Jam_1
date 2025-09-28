@@ -5,13 +5,14 @@ using System.Collections.Generic;
 using System.Collections;
 using Unity.Collections;
 
-
 public sealed class PowerupManager : NetworkBehaviour
 {
   public static PowerupManager Singleton;
   private static readonly WaitForSecondsRealtime s_waitTime = new(10.0f);
   private static readonly WaitForSecondsRealtime s_waitSpawn = new(2.0f);
   private static readonly WaitForSecondsRealtime s_waitEffect = new(3.5f);
+
+  public int _test;
 
   [field: SerializeField] private int m_powerupCountX;
   [field: SerializeField] private int m_powerupCountZ;
@@ -27,17 +28,32 @@ public sealed class PowerupManager : NetworkBehaviour
 
   private Coroutine RoutineSpawnPeriodic;
 
+  [Header("Powerup Colors")]
+  [field: SerializeField] private Color m_colorGrow;
+  [field: SerializeField] private Color m_colorShrink;
+  [field: SerializeField] private Color m_colorSlow;
+  [field: SerializeField] private Color m_colorBigPuck;
+  [field: SerializeField] private Color m_colorSmallPuck;
+  [field: SerializeField] private Color m_colorReversedControls;
+  [field: SerializeField] private Color m_colorStun;
+
+  [Header("Powerup Icons")]
+  [field: SerializeField] private Sprite m_spriteGrow;
+  [field: SerializeField] private Sprite m_spriteShrink;
+  [field: SerializeField] private Sprite m_spriteSlow;
+  [field: SerializeField] private Sprite m_spriteBigPuck;
+  [field: SerializeField] private Sprite m_spriteSmallPuck;
+  [field: SerializeField] private Sprite m_spriteReversedControls;
+  [field: SerializeField] private Sprite m_spriteStun;
+
+
+
   private void Awake()
   {
     if (Singleton == null)
-    {
       Singleton = this;
-    }
     else
-    {
       Destroy(gameObject);
-      return;
-    }
   }
 
   public void Begin()
@@ -46,8 +62,8 @@ public sealed class PowerupManager : NetworkBehaviour
     SpawnPowerups();
     RoutineSpawnPeriodic = StartCoroutine(SpawnPeriodic());
   }
-#if DEBUG 
-  public void Test_GameEnd()
+
+  public void GameEnd()
   {
     if (!IsServer) return;
     if (RoutineSpawnPeriodic != null)
@@ -56,7 +72,6 @@ public sealed class PowerupManager : NetworkBehaviour
     foreach (ulong powerup in m_poolPowerups)
       NetworkManager.Singleton.SpawnManager.SpawnedObjects[powerup].Despawn(true);
   }
-#endif
 
   public void Initialize(ulong _player1, ulong _player2)
   {
@@ -119,7 +134,7 @@ public sealed class PowerupManager : NetworkBehaviour
   private void SpawnPowerups()
   {
     if (!IsServer) return;
-    
+
     for (int i = 0; i < 6; i++)
     {
       // Get NetworkObject
@@ -144,7 +159,7 @@ public sealed class PowerupManager : NetworkBehaviour
   }
 
   /// <summary>
-  /// Initialization des materiaux pour les powerups
+  /// Initialization des materiaux pour chaque powerup.
   /// </summary>
   [Rpc(SendTo.Everyone)]
   void InitMaterials_Rpc()
@@ -153,9 +168,13 @@ public sealed class PowerupManager : NetworkBehaviour
     for (int i = 0; i < (int)PowerupEffects.Count; i++)
       m_dicEffMaterial.Add((PowerupEffects)i, new Material(m_powerupDefaultMat));
 
-    m_dicEffMaterial[PowerupEffects.grow].color = Color.red;
-    m_dicEffMaterial[PowerupEffects.shrink].color = Color.green;
-    m_dicEffMaterial[PowerupEffects.slow].color = Color.blue;
+    m_dicEffMaterial[PowerupEffects.grow].color = m_colorGrow;
+    m_dicEffMaterial[PowerupEffects.shrink].color = m_colorShrink;
+    m_dicEffMaterial[PowerupEffects.slow].color = m_colorSlow;
+    m_dicEffMaterial[PowerupEffects.bigPuck].color = m_colorBigPuck;
+    m_dicEffMaterial[PowerupEffects.smallPuck].color = m_colorSmallPuck;
+    m_dicEffMaterial[PowerupEffects.reverseControls].color = m_colorReversedControls;
+    m_dicEffMaterial[PowerupEffects.stun].color = m_colorStun;
   }
 
   private void ResetPowerups()
@@ -192,24 +211,27 @@ public sealed class PowerupManager : NetworkBehaviour
   public void NetworkPowerupHit_Rpc(ulong _player, ulong _powerupObj)
   {
     if (!IsServer) return;
+
     PowerupEffects _effect = m_dictSpawnedPowerups[_powerupObj];
 
     NetworkDeactivatePowerup_Rpc(_powerupObj);
-    
+
     if ((m_dictActiveEffects[_player] & 1 << ((int)_effect)) == 0)
     {
-#if DEBUG
+#if UNITY_EDITOR
       Debug.Log("Applying effect to player");
 #endif
       m_dictActiveEffects[_player] |= 1 << ((int)_effect);
       StartCoroutine(ResetEffect(_player, m_dictSpawnedPowerups[_powerupObj]));
     }
   }
-  
+
   private IEnumerator ResetEffect(ulong _target, PowerupEffects _effect)
   {
     NetworkObject _networkObject = NetworkManager.Singleton.SpawnManager.SpawnedObjects[_target];
-
+#if UNITY_EDITOR
+    Debug.Log($"Applying effect {_effect} to {_target}");
+#endif
     switch (_effect)
     {
       case PowerupEffects.grow:
@@ -224,16 +246,32 @@ public sealed class PowerupManager : NetworkBehaviour
         _networkObject.gameObject.transform.localScale *= 1.5f;
         break;
 
+      case PowerupEffects.slow:
+        yield return s_waitEffect;
+        break;
+
+      case PowerupEffects.bigPuck:
+        yield return s_waitEffect;
+        break;
+
+      case PowerupEffects.smallPuck:
+        yield return s_waitEffect;
+        break;
+
+      case PowerupEffects.reverseControls:
+        yield return s_waitEffect;
+        break;
+
+      case PowerupEffects.stun:
+        yield return s_waitEffect;
+        break;
+
       default:
         break;
     }
 
     m_dictActiveEffects[_target] &= ~(1 << ((int)_effect));
   }
-
-  //////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////// Remote Network Procedures
-  //////////////////////////////////////////////////////////////////////////////
 
   [Rpc(SendTo.Everyone)]
   private void NetworkDeactivatePowerup_Rpc(ulong _target)

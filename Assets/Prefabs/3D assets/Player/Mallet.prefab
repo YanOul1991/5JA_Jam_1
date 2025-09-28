@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2126597375569709499}
   - component: {fileID: 3439316813563715283}
   m_Layer: 0
-  m_Name: _test_player
+  m_Name: Mallet
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

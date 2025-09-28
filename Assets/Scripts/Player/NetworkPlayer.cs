@@ -9,11 +9,11 @@ using UnityEngine;
 public sealed class NetworkPlayer : NetworkBehaviour
 {
   static public NetworkPlayer Singleton;
-  [field: SerializeField] private GameObject m_player1;       
+  [field: SerializeField] private GameObject m_player1;
   [field: SerializeField] private GameObject m_player2;
-  [field: SerializeField] private Transform  m_limit_x;
-  [field: SerializeField] private Transform  m_limit_z;
-  [field: SerializeField] private Transform  m_limit_center;
+  [field: SerializeField] private Transform m_limit_x;
+  [field: SerializeField] private Transform m_limit_z;
+  [field: SerializeField] private Transform m_limit_center;
 
   private UserInputs m_inputs;
   private List<Action> m_updateActions;
@@ -49,7 +49,7 @@ public sealed class NetworkPlayer : NetworkBehaviour
   public override void OnNetworkSpawn()
   {
     base.OnNetworkSpawn();
-#if DEBUG
+#if UNITY_EDITOR
     Debug.Log("Connected to game");
 #endif
     if (IsServer)
@@ -61,7 +61,7 @@ public sealed class NetworkPlayer : NetworkBehaviour
   public override void OnNetworkDespawn()
   {
     base.OnNetworkDespawn();
-#if DEBUG
+#if UNITY_EDITOR
     Debug.Log("Disconnected from game");
 #endif
   }
@@ -127,7 +127,7 @@ public sealed class NetworkPlayer : NetworkBehaviour
       m_updateActions.Add(HostUpdateDelta);
       m_updateActions.Add(ServerCheckNoMouseMove);
       m_updateActions.Add(ServerCheckPlayerBounds);
-#if DEBUG
+#if UNITY_EDITOR
       Debug.Log($"Currently connected player count: {NetworkManager.Singleton.ConnectedClients.Count}");
 #endif  
     }
@@ -146,8 +146,8 @@ public sealed class NetworkPlayer : NetworkBehaviour
     Cursor.lockState = CursorLockMode.Confined;
     Cursor.visible = false;
     m_isReady = true;
-#if DEBUG
-    Invoke(nameof(Disconnect_Rpc), 10f);
+#if UNITY_EDITOR
+    // Invoke(nameof(Disconnect_Rpc), 10f);
 #endif
   }
 
@@ -160,7 +160,7 @@ public sealed class NetworkPlayer : NetworkBehaviour
       NetworkManager.Singleton.SpawnManager.SpawnedObjects[m_player2.GetComponent<NetworkObject>().NetworkObjectId].Despawn(true);
     }
 
-    PowerupManager.Singleton.Test_GameEnd();
+    PowerupManager.Singleton.GameEnd();
     NetworkManager.Singleton.Shutdown();
     m_inputs = new UserInputs();
     m_updateActions = new List<Action>();
@@ -178,9 +178,9 @@ public sealed class NetworkPlayer : NetworkBehaviour
 
   private void ClientUpdateDelta()
   {
-    SendClientMove_Rpc(m_inputs.MapMain.Look.ReadValue<Vector2>() * c_deltaDefault) ;
+    SendClientMove_Rpc(m_inputs.MapMain.Look.ReadValue<Vector2>() * c_deltaDefault);
   }
-  
+
   private void HostUpdateDelta()
   {
     m_hostMouseDelta = m_deltaMultiplier * c_deltaDefault * m_inputs.MapMain.Look.ReadValue<Vector2>();
@@ -189,18 +189,18 @@ public sealed class NetworkPlayer : NetworkBehaviour
   public void ServerPhysicsUpdate()
   {
     m_player1.GetComponent<Rigidbody>().AddForce(new Vector3(
-      m_hostMouseDelta.x, 
-      0, 
+      m_hostMouseDelta.x,
+      0,
       m_hostMouseDelta.y
     ));
 
     m_player2.GetComponent<Rigidbody>().AddForce(new Vector3(
-      m_clientMouseDelta.x, 
-      0, 
+      m_clientMouseDelta.x,
+      0,
       m_clientMouseDelta.y
     ));
   }
-  
+
   private void ServerCheckNoMouseMove()
   {
     if (m_hostMouseDelta.magnitude < Mathf.Epsilon)
@@ -239,3 +239,11 @@ public sealed class NetworkPlayer : NetworkBehaviour
       m_player2.transform.position = new(m_player2.transform.position.x, 0, -m_limit_center.transform.position.z);
   }
 }
+
+#if UNITY_EDITOR
+public class Debugger
+{
+
+}
+
+#endif

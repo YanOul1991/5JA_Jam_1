@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6364863028844148386
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6789173100135514441}
+  - component: {fileID: 3807252997127095539}
+  - component: {fileID: 4538717686484545647}
+  m_Layer: 0
+  m_Name: PowerUpManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &6789173100135514441
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6364863028844148386}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3807252997127095539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6364863028844148386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
+  GlobalObjectIdHash: 2417683807
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 0
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
+--- !u!114 &4538717686484545647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6364863028844148386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bcf957a11392c144b0c945a900376f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerupManager
+  ShowTopMostFoldoutHeaderGroup: 1
+  _test: 0
+  m_powerupCountX: 6
+  m_powerupCountZ: 3
+  <PrefabPowerUp>k__BackingField: {fileID: 6452330417978565299, guid: e6107d3a9d819734eaaba145ba0fffba, type: 3}
+  m_powerupDefaultMat: {fileID: 2100000, guid: 04f371bfc08a5de4f86411d14d916244, type: 2}
+  m_colorGrow: {r: 0, g: 0.37425083, b: 0.6886792, a: 0}
+  m_colorShrink: {r: 0.8773585, g: 0.8113268, b: 0.0041384934, a: 0}
+  m_colorSlow: {r: 0.5383034, g: 0, b: 0.745283, a: 0}
+  m_colorBigPuck: {r: 1, g: 1, b: 1, a: 0}
+  m_colorSmallPuck: {r: 0, g: 0.8114111, b: 0.8679245, a: 0}
+  m_colorReversedControls: {r: 1, g: 0.29894584, b: 0, a: 0}
+  m_colorStun: {r: 1, g: 0, b: 0.036886215, a: 0}
+  m_spriteGrow: {fileID: 21300000, guid: bc73b7bb85bb79140a22111c3c7ac0c0, type: 3}
+  m_spriteShrink: {fileID: 21300000, guid: 69f93d41d1572e746a24be86b7227af0, type: 3}
+  m_spriteSlow: {fileID: 21300000, guid: 90650eebe3ce1dc479dff1f1345b7959, type: 3}
+  m_spriteBigPuck: {fileID: 21300000, guid: 6609ff2059e861b49987434b6374a1ba, type: 3}
+  m_spriteSmallPuck: {fileID: 21300000, guid: 46ea1c3548402e347af8e1da2f6f7a7e, type: 3}
+  m_spriteReversedControls: {fileID: 21300000, guid: b83c122453355a24d9e6fd330a080586, type: 3}
+  m_spriteStun: {fileID: 0}
