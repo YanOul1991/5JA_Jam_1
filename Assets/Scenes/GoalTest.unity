@@ -266,6 +266,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 387773fa509d556439ae0e503ee0539e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+--- !u!114 &219659546 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6945695763732807407, guid: c01573ed9e4f7d04aa9225cca9175751, type: 3}
+  m_PrefabInstance: {fileID: 1654402669}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!114 &251588828 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3827409431948189519, guid: c01573ed9e4f7d04aa9225cca9175751, type: 3}
+  m_PrefabInstance: {fileID: 1654402669}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &294939834
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,7 +305,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &294939835
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1115,7 +1137,7 @@ Transform:
   m_GameObject: {fileID: 974404313}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 26, z: 0}
+  m_LocalPosition: {x: 0, y: 28.98, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1563,7 +1585,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1338901711
 Transform:
   m_ObjectHideFlags: 0
@@ -2782,6 +2804,14 @@ PrefabInstance:
       propertyPath: pannelVictoire
       value: 
       objectReference: {fileID: 1654402672}
+    - target: {fileID: 3558502526904904774, guid: 3ec7f16baa3552e4f8a4607a3e315700, type: 3}
+      propertyPath: scoreTxtPlayer1
+      value: 
+      objectReference: {fileID: 251588828}
+    - target: {fileID: 3558502526904904774, guid: 3ec7f16baa3552e4f8a4607a3e315700, type: 3}
+      propertyPath: scoreTxtPlayer2
+      value: 
+      objectReference: {fileID: 219659546}
     - target: {fileID: 7627134682489023918, guid: 3ec7f16baa3552e4f8a4607a3e315700, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 632256719

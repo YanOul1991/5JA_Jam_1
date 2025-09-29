@@ -5,7 +5,8 @@ using Unity.Netcode;
 public class ScoreManager : NetworkBehaviour
 {
     public static ScoreManager instance; // singleton
-    [SerializeField] private TMP_Text scoreTxt;
+    [SerializeField] private TMP_Text scoreTxtPlayer1;
+    [SerializeField] private TMP_Text scoreTxtPlayer2;
     [SerializeField] private int pointageCible;
     private NetworkVariable<int> scoreHote = new NetworkVariable<int>();
     private NetworkVariable<int> scoreClient = new NetworkVariable<int>();
@@ -70,7 +71,7 @@ public class ScoreManager : NetworkBehaviour
     {
         if (ancienScoreHote == nouveauScoreHote) return; // Évite de mettre à jour si le score n'a pas changé
 
-        scoreTxt.text = scoreHote.Value + " - " + scoreClient.Value;
+        scoreTxtPlayer1.text = scoreHote.Value + "";
     }
 
     // Méthode pour gérer le changement de valeur du score du client
@@ -80,7 +81,7 @@ public class ScoreManager : NetworkBehaviour
     {
         if (ancienScoreClient == nouveauScoreClient) return; // Évite de mettre à jour si le score n'a pas changé
 
-        scoreTxt.text = scoreHote.Value + " - " + scoreClient.Value;
+        scoreTxtPlayer2.text = scoreClient.Value + "";
     }
 
 
