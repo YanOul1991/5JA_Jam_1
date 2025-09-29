@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b001a812a900a94c98ff9d36b34c313, type: 3}
+  m_Name: GlobalPrefabsData
+  m_EditorClassIdentifier: Assembly-CSharp::GlobalPrefabs
+  <PlayerMallet>k__BackingField: {fileID: 0}
+  <Puck>k__BackingField: {fileID: 0}
+  <Powerup>k__BackingField: {fileID: 0}
+  <PowerupUiItem>k__BackingField: {fileID: 2820998151645158556, guid: 39a28c6347041f04a8fccb2fb2930d60, type: 3}

@@ -6,6 +6,9 @@ public enum PowerupEffects
   grow,
   shrink,
   slow,
+  bigPuck,
+  smallPuck,
+  reverseControls,
   Count
 }
 
