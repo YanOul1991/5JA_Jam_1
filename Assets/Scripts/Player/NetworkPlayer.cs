@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using NUnit.Framework;
 using Unity.Netcode;
 using Unity.Netcode.Components;
 using UnityEngine;
@@ -22,7 +21,8 @@ public sealed class NetworkPlayer : NetworkBehaviour
   private bool m_isReady = false;
 
   private const float c_deltaDefault = 20000.0f;
-  private float m_deltaMultiplier;
+  private float m_deltaMultiplierHost;
+  private float m_deltaMultiplierClient;
   public event Action OnPlayerDisconnected;
 
   ///////////////////////////////////////////////////////////////////// FUNCTIONS
@@ -42,8 +42,6 @@ public sealed class NetworkPlayer : NetworkBehaviour
     m_clientMouseDelta = new Vector2();
 
     Application.targetFrameRate = 120;
-
-
   }
 
   public override void OnNetworkSpawn()
@@ -120,7 +118,8 @@ public sealed class NetworkPlayer : NetworkBehaviour
     m_limit_x = SceneDataJeu.Singleton.Limit_x;
     m_limit_z = SceneDataJeu.Singleton.Limit_z;
     m_limit_center = SceneDataJeu.Singleton.Limit_center;
-    m_deltaMultiplier = 1.0f;
+    m_deltaMultiplierHost = 1.0f;
+    m_deltaMultiplierClient = 1.0f;
 
     if (IsServer)
     {
@@ -152,15 +151,15 @@ public sealed class NetworkPlayer : NetworkBehaviour
   }
 
   [Rpc(SendTo.Everyone)]
-  private void Disconnect_Rpc()
+  public void Disconnect_Rpc()
   {
     if (IsServer)
     {
       NetworkManager.Singleton.SpawnManager.SpawnedObjects[m_player1.GetComponent<NetworkObject>().NetworkObjectId].Despawn(true);
       NetworkManager.Singleton.SpawnManager.SpawnedObjects[m_player2.GetComponent<NetworkObject>().NetworkObjectId].Despawn(true);
+      PowerupManager.Singleton.GameEnd();
     }
 
-    PowerupManager.Singleton.GameEnd();
     NetworkManager.Singleton.Shutdown();
     m_inputs = new UserInputs();
     m_updateActions = new List<Action>();
@@ -170,10 +169,54 @@ public sealed class NetworkPlayer : NetworkBehaviour
     OnPlayerDisconnected?.Invoke();
   }
 
+  public void ApplyMovEffect(ulong _target, PowerupEffects _effect)
+  {
+    if (_target == m_player1.GetComponent<NetworkObject>().NetworkObjectId)
+    {
+      if (_effect == PowerupEffects.slow) m_deltaMultiplierHost /= 2;
+      if (_effect == PowerupEffects.reverseControls) m_deltaMultiplierHost *= -1;
+    }
+    else
+    {
+      if (_effect == PowerupEffects.slow) m_deltaMultiplierClient /= 2;
+      if (_effect == PowerupEffects.reverseControls) m_deltaMultiplierClient *= -1;
+    }
+  }
+
+  public void RemoveMovEffect(ulong _target, PowerupEffects _effect)
+  {
+    if (_target == m_player1.GetComponent<NetworkObject>().NetworkObjectId)
+    {
+      if (_effect == PowerupEffects.slow) m_deltaMultiplierHost *= 2;
+      if (_effect == PowerupEffects.reverseControls) m_deltaMultiplierHost *= -1;
+    }
+    else
+    {
+      if (_effect == PowerupEffects.slow) m_deltaMultiplierClient *= 2;
+      if (_effect == PowerupEffects.reverseControls) m_deltaMultiplierClient *= -1;
+    }
+  }
+  
   [Rpc(SendTo.Server)]
   private void SendClientMove_Rpc(Vector2 _clientDelta)
   {
-    m_clientMouseDelta = -_clientDelta * m_deltaMultiplier;
+    m_clientMouseDelta = -_clientDelta;
+  }
+
+  [Rpc(SendTo.Server)]
+  public void ServerManageEffectUI_Rpc(ulong target, PowerupEffects powerup)
+  {
+    if (target == m_player1.GetComponent<NetworkObject>().NetworkObjectId)
+      PowerupManager.Singleton.DisplayPowerup(powerup);
+    else
+      ClientDisplayEffectUI_Rpc(powerup);
+  }
+
+  [Rpc(SendTo.NotServer)]
+  private void ClientDisplayEffectUI_Rpc(PowerupEffects powerup)
+  {
+    if (IsServer) return;
+    PowerupManager.Singleton.DisplayPowerup(powerup);
   }
 
   private void ClientUpdateDelta()
@@ -183,7 +226,7 @@ public sealed class NetworkPlayer : NetworkBehaviour
 
   private void HostUpdateDelta()
   {
-    m_hostMouseDelta = m_deltaMultiplier * c_deltaDefault * m_inputs.MapMain.Look.ReadValue<Vector2>();
+    m_hostMouseDelta = c_deltaDefault * m_inputs.MapMain.Look.ReadValue<Vector2>();
   }
 
   public void ServerPhysicsUpdate()
@@ -192,13 +235,13 @@ public sealed class NetworkPlayer : NetworkBehaviour
       m_hostMouseDelta.x,
       0,
       m_hostMouseDelta.y
-    ));
+    ) * m_deltaMultiplierHost);
 
     m_player2.GetComponent<Rigidbody>().AddForce(new Vector3(
       m_clientMouseDelta.x,
       0,
       m_clientMouseDelta.y
-    ));
+    ) * m_deltaMultiplierClient);
   }
 
   private void ServerCheckNoMouseMove()
@@ -239,11 +282,3 @@ public sealed class NetworkPlayer : NetworkBehaviour
       m_player2.transform.position = new(m_player2.transform.position.x, 0, -m_limit_center.transform.position.z);
   }
 }
-
-#if UNITY_EDITOR
-public class Debugger
-{
-
-}
-
-#endif

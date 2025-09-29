@@ -9,7 +9,6 @@ public enum PowerupEffects
   bigPuck,
   smallPuck,
   reverseControls,
-  stun,
   Count
 }
 
