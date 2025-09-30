@@ -14,6 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/_testYanis.unity
     guid: ce2ab7d81fbc88c4dbf6ee6d852a1ef5
+  - enabled: 1
+    path: Assets/Scenes/GoalTest.unity
+    guid: 56002ffb8f5aa9348bf54242423209f5
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

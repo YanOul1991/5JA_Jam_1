@@ -15,6 +15,7 @@ public class SceneDataJeu : MonoBehaviour
 
   [Header("UI elements")]
   [field: SerializeField] private GameObject m_mainMenuUI;
+  [field: SerializeField] private GameObject m_scoreUI;
   [field: SerializeField] private Button m_boutonStart_host;
   [field: SerializeField] private Button m_boutonStart_client;
 
@@ -54,5 +55,6 @@ public class SceneDataJeu : MonoBehaviour
     m_boutonStart_host.onClick.RemoveListener(StartHost);
     m_boutonStart_client.onClick.RemoveListener(StartClient);
     m_mainMenuUI.SetActive(false);
+    m_scoreUI.SetActive(true);
   }
 }
