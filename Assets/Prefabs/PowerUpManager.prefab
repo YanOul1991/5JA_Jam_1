@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 2417683807
-  InScenePlacedSourceGlobalObjectIdHash: 0
+  GlobalObjectIdHash: 1762406608
+  InScenePlacedSourceGlobalObjectIdHash: 3956047692
   DeferredDespawnTick: 0
   Ownership: 1
   AlwaysReplicateAsRoot: 0
@@ -71,22 +71,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PowerupManager
   ShowTopMostFoldoutHeaderGroup: 1
-  _test: 0
   m_powerupCountX: 6
   m_powerupCountZ: 3
   <PrefabPowerUp>k__BackingField: {fileID: 6452330417978565299, guid: e6107d3a9d819734eaaba145ba0fffba, type: 3}
   m_powerupDefaultMat: {fileID: 2100000, guid: 04f371bfc08a5de4f86411d14d916244, type: 2}
-  m_colorGrow: {r: 0, g: 0.37425083, b: 0.6886792, a: 0}
-  m_colorShrink: {r: 0.8773585, g: 0.8113268, b: 0.0041384934, a: 0}
-  m_colorSlow: {r: 0.5383034, g: 0, b: 0.745283, a: 0}
-  m_colorBigPuck: {r: 1, g: 1, b: 1, a: 0}
-  m_colorSmallPuck: {r: 0, g: 0.8114111, b: 0.8679245, a: 0}
-  m_colorReversedControls: {r: 1, g: 0.29894584, b: 0, a: 0}
-  m_colorStun: {r: 1, g: 0, b: 0.036886215, a: 0}
-  m_spriteGrow: {fileID: 21300000, guid: bc73b7bb85bb79140a22111c3c7ac0c0, type: 3}
-  m_spriteShrink: {fileID: 21300000, guid: 69f93d41d1572e746a24be86b7227af0, type: 3}
-  m_spriteSlow: {fileID: 21300000, guid: 90650eebe3ce1dc479dff1f1345b7959, type: 3}
-  m_spriteBigPuck: {fileID: 21300000, guid: 6609ff2059e861b49987434b6374a1ba, type: 3}
-  m_spriteSmallPuck: {fileID: 21300000, guid: 46ea1c3548402e347af8e1da2f6f7a7e, type: 3}
-  m_spriteReversedControls: {fileID: 21300000, guid: b83c122453355a24d9e6fd330a080586, type: 3}
-  m_spriteStun: {fileID: 0}
+  m_colorGrow: {r: 1, g: 1, b: 0.14999998, a: 0}
+  m_colorShrink: {r: 0.14999998, g: 1, b: 0.14999998, a: 0}
+  m_colorSlow: {r: 0.14999998, g: 1, b: 1, a: 0}
+  m_colorBigPuck: {r: 0.14999998, g: 0.14999998, b: 1, a: 0}
+  m_colorSmallPuck: {r: 1, g: 0.14999998, b: 1, a: 0}
+  m_colorReversedControls: {r: 1, g: 0.14999998, b: 0.14999998, a: 0}
+  m_powerupUiItem: {fileID: 2820998151645158556, guid: 39a28c6347041f04a8fccb2fb2930d60, type: 3}
+  m_powerupSprites:
+  - {fileID: 21300000, guid: bc73b7bb85bb79140a22111c3c7ac0c0, type: 3}
+  - {fileID: 21300000, guid: 69f93d41d1572e746a24be86b7227af0, type: 3}
+  - {fileID: 21300000, guid: 90650eebe3ce1dc479dff1f1345b7959, type: 3}
+  - {fileID: 21300000, guid: 6609ff2059e861b49987434b6374a1ba, type: 3}
+  - {fileID: 21300000, guid: 46ea1c3548402e347af8e1da2f6f7a7e, type: 3}
+  - {fileID: 21300000, guid: b83c122453355a24d9e6fd330a080586, type: 3}
+  m_spriteUIContainer: {fileID: 0}

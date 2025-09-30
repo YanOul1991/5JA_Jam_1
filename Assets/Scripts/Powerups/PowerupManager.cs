@@ -261,14 +261,14 @@ public sealed class PowerupManager : NetworkBehaviour
         NetworkPlayer.Singleton.RemoveMovEffect(_target, _effect);
         break;
       case PowerupEffects.bigPuck:
-        PuckPhysics.Singleton.gameObject.transform.localScale *= 4.0f;
-        PuckPhysics.Singleton.gameObject.transform.localScale /= 4.0f;
+        PuckPhysics.Singleton.gameObject.transform.localScale *= 3.0f;
         yield return s_waitEffect;
+        PuckPhysics.Singleton.gameObject.transform.localScale /= 3.0f;
         break;
       case PowerupEffects.smallPuck:
-        PuckPhysics.Singleton.gameObject.transform.localScale /= 1.25f;
+        PuckPhysics.Singleton.gameObject.transform.localScale /= 2.0f;
         yield return s_waitEffect;
-        PuckPhysics.Singleton.gameObject.transform.localScale *= 1.25f;
+        PuckPhysics.Singleton.gameObject.transform.localScale *= 2.0f;
         break;
       case PowerupEffects.reverseControls:
         NetworkPlayer.Singleton.ApplyMovEffect(_target, _effect);

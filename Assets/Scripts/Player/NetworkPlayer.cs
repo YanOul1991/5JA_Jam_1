@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using Unity.Netcode.Components;
 using UnityEngine;
+using Unity.Netcode.Transports.UTP;
 
 public sealed class NetworkPlayer : NetworkBehaviour
 {
@@ -26,7 +27,7 @@ public sealed class NetworkPlayer : NetworkBehaviour
   public event Action OnPlayerDisconnected;
 
   ///////////////////////////////////////////////////////////////////// FUNCTIONS
-
+  /// 
   private void Awake()
   {
     if (Singleton == null)
@@ -42,6 +43,15 @@ public sealed class NetworkPlayer : NetworkBehaviour
     m_clientMouseDelta = new Vector2();
 
     Application.targetFrameRate = 120;
+  }
+
+  private void Start()
+  {
+#if !UNITY_EDITOR
+    NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("10.40.73.7", 7777);
+#else
+    NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("127.0.0.1", 7777);
+#endif
   }
 
   public override void OnNetworkSpawn()
@@ -127,7 +137,7 @@ public sealed class NetworkPlayer : NetworkBehaviour
       m_updateActions.Add(ServerCheckNoMouseMove);
       m_updateActions.Add(ServerCheckPlayerBounds);
 #if UNITY_EDITOR
-      Debug.Log($"Currently connected player count: {NetworkManager.Singleton.ConnectedClients.Count}");
+      Debug.Log($"Currently connected player count: { NetworkManager.Singleton.ConnectedClients.Count}");
 #endif  
     }
     else
@@ -145,6 +155,7 @@ public sealed class NetworkPlayer : NetworkBehaviour
     Cursor.lockState = CursorLockMode.Confined;
     Cursor.visible = false;
     m_isReady = true;
+    // GameManager.instance.NewGame();
 #if UNITY_EDITOR
     // Invoke(nameof(Disconnect_Rpc), 10f);
 #endif
@@ -196,7 +207,7 @@ public sealed class NetworkPlayer : NetworkBehaviour
       if (_effect == PowerupEffects.reverseControls) m_deltaMultiplierClient *= -1;
     }
   }
-  
+
   [Rpc(SendTo.Server)]
   private void SendClientMove_Rpc(Vector2 _clientDelta)
   {
