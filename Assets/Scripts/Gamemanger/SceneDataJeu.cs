@@ -34,7 +34,6 @@ public class SceneDataJeu : MonoBehaviour
   {
     NetworkManager.Singleton.StartHost();
     HideOptions();
-    
   }
 
   private void StartClient()
@@ -42,18 +41,20 @@ public class SceneDataJeu : MonoBehaviour
     NetworkManager.Singleton.StartClient();
     HideOptions();
   }
-
+  
   private void DisplayOptions()
   {
     NetworkPlayer.Singleton.OnPlayerDisconnected -= DisplayOptions;
     m_boutonStart_host.onClick.AddListener(StartHost);
     m_boutonStart_client.onClick.AddListener(StartClient);
+    m_mainMenuUI.SetActive(true);
   }
 
   private void HideOptions()
   {
     m_boutonStart_host.onClick.RemoveListener(StartHost);
     m_boutonStart_client.onClick.RemoveListener(StartClient);
+    NetworkPlayer.Singleton.OnPlayerDisconnected += DisplayOptions;
     m_mainMenuUI.SetActive(false);
     m_scoreUI.SetActive(true);
   }

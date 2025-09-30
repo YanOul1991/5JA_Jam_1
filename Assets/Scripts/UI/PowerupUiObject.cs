@@ -32,7 +32,7 @@ public class PowerupUiObject : MonoBehaviour
 
     IsActive = true;
     _img.fillAmount = 1.0f;
-
+    
     while (_img.fillAmount > 0)
     {
       m_timeFill.GetComponent<Image>().fillAmount -= steps;
