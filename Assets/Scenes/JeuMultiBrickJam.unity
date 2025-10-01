@@ -1796,9 +1796,37 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 900132303944454334, guid: 77194a246706b2a49a4205d22efc1817, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 1498649721453070433, guid: 77194a246706b2a49a4205d22efc1817, type: 3}
       propertyPath: m_Name
       value: Air_Hockey_Table_asset
+      objectReference: {fileID: 0}
+    - target: {fileID: 3311609356317571481, guid: 77194a246706b2a49a4205d22efc1817, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 3340622743244334116, guid: 77194a246706b2a49a4205d22efc1817, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344780834164022138, guid: 77194a246706b2a49a4205d22efc1817, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 6012291455598363984, guid: 77194a246706b2a49a4205d22efc1817, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 6329276197379316498, guid: 77194a246706b2a49a4205d22efc1817, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 7124581912197092088, guid: 77194a246706b2a49a4205d22efc1817, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 7185439331474615992, guid: 77194a246706b2a49a4205d22efc1817, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1839,6 +1867,18 @@ PrefabInstance:
     - target: {fileID: 7185439331474615992, guid: 77194a246706b2a49a4205d22efc1817, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7441580360262520854, guid: 77194a246706b2a49a4205d22efc1817, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 7706484106316740913, guid: 77194a246706b2a49a4205d22efc1817, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 8697070590098479253, guid: 77194a246706b2a49a4205d22efc1817, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2948,6 +2988,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1763252991}
     - target: {fileID: 2170276120744430113, guid: 23892dc9c039095419cba67d7b9e3e8a, type: 3}
+      propertyPath: m_sfxGoal
+      value: 
+      objectReference: {fileID: 8300000, guid: c1c0edbdad1f7d24f908b7ede3f77877, type: 3}
+    - target: {fileID: 2170276120744430113, guid: 23892dc9c039095419cba67d7b9e3e8a, type: 3}
       propertyPath: puckRespawnPlayer1
       value: 
       objectReference: {fileID: 459272128}
@@ -2999,6 +3043,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: puck_lowPoly
       objectReference: {fileID: 0}
+    - target: {fileID: 7194036428732216171, guid: 23892dc9c039095419cba67d7b9e3e8a, type: 3}
+      propertyPath: m_sfxGoal
+      value: 
+      objectReference: {fileID: 8300000, guid: c1c0edbdad1f7d24f908b7ede3f77877, type: 3}
+    - target: {fileID: 7194036428732216171, guid: 23892dc9c039095419cba67d7b9e3e8a, type: 3}
+      propertyPath: m_sfxPuckHit
+      value: 
+      objectReference: {fileID: 8300000, guid: a15fd76948fc4c3419f5ebc4c014b2c3, type: 3}
     - target: {fileID: 8351743148499740745, guid: 23892dc9c039095419cba67d7b9e3e8a, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 3597121575

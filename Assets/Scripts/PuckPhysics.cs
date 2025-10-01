@@ -6,6 +6,8 @@ public class PuckPhysics : NetworkBehaviour
   public static PuckPhysics Singleton;
   private ulong m_lastPlayerHit;
   [field: SerializeField] private AudioClip m_sfxPowerupHit;
+  [field: SerializeField] private AudioClip m_sfxPuckHit;
+
 
   private void Awake()
   {
@@ -22,6 +24,7 @@ public class PuckPhysics : NetworkBehaviour
     if (collision.gameObject.CompareTag("Player"))
     {
       m_lastPlayerHit = collision.gameObject.GetComponent<NetworkObject>().NetworkObjectId;
+      PlaySfxPuckHit_Rpc();
     }
 
     if (collision.gameObject.CompareTag("Powerup"))
@@ -32,11 +35,23 @@ public class PuckPhysics : NetworkBehaviour
       );
       PlaySfxPowerupHit_Rpc();
     }
+
+    if (collision.gameObject.CompareTag("Wall"))
+    {
+      PlaySfxPuckHit_Rpc();
+    }
   }
+  
 
   [Rpc(SendTo.Everyone)]
   private void PlaySfxPowerupHit_Rpc()
   {
     Camera.main.gameObject.GetComponent<AudioSource>().PlayOneShot(m_sfxPowerupHit);
+  }
+
+  [Rpc(SendTo.Everyone)]
+  private void PlaySfxPuckHit_Rpc()
+  {
+    Camera.main.gameObject.GetComponent<AudioSource>().PlayOneShot(m_sfxPuckHit);
   }
 }
