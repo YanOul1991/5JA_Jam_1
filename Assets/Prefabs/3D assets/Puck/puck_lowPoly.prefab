@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 81cee3061d3d7cf479f6f60cab1982c0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.01
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 81cee3061d3d7cf479f6f60cab1982c0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.00000011920929
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 81cee3061d3d7cf479f6f60cab1982c0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -3.95
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 81cee3061d3d7cf479f6f60cab1982c0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -74,6 +74,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 81cee3061d3d7cf479f6f60cab1982c0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4258630222721988053}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 81cee3061d3d7cf479f6f60cab1982c0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2170276120744430113}
   m_SourcePrefab: {fileID: 100100000, guid: 81cee3061d3d7cf479f6f60cab1982c0, type: 3}
 --- !u!1 &6729262082301107095 stripped
 GameObject:
@@ -141,8 +144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 812780161
-  InScenePlacedSourceGlobalObjectIdHash: 0
+  GlobalObjectIdHash: 3597121575
+  InScenePlacedSourceGlobalObjectIdHash: 812780161
   DeferredDespawnTick: 0
   Ownership: 1
   AlwaysReplicateAsRoot: 0
@@ -167,6 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuckPhysics
   ShowTopMostFoldoutHeaderGroup: 1
+  m_sfxPowerupHit: {fileID: 8300000, guid: 56c45664999e92642ac6db3321cca9be, type: 3}
 --- !u!114 &3780288666621375373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,3 +234,21 @@ MonoBehaviour:
   UseRigidBodyForMotion: 1
   AutoUpdateKinematicState: 1
   AutoSetKinematicOnDespawn: 1
+--- !u!114 &2170276120744430113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6729262082301107095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dee4270af44b76478241a03409d01b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Puck
+  ShowTopMostFoldoutHeaderGroup: 1
+  thrust: 20
+  Goal1: {fileID: 0}
+  Goal2: {fileID: 0}
+  puckRespawnPlayer1: {fileID: 0}
+  puckRespawnPlayer2: {fileID: 0}
