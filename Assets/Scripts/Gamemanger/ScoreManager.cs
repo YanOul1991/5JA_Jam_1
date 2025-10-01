@@ -94,12 +94,10 @@ public class ScoreManager : NetworkBehaviour
         if (scoreHote.Value >= pointageCible)
         {
             GagnantHote_ClientRpc();
-            GameManager.instance.FinPartie();
         }
         else if (scoreClient.Value >= pointageCible)
         {
             GagnantClient_ClientRpc();
-            GameManager.instance.FinPartie();
         }
     }
     [Rpc(SendTo.Everyone)]
