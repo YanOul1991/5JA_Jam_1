@@ -995,6 +995,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1300949985}
+  - component: {fileID: 1300949986}
   m_Layer: 5
   m_Name: Powerup_Container
   m_TagString: Untagged
@@ -1016,11 +1017,19 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1320581347}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -110, y: 0}
+  m_SizeDelta: {x: 200, y: 1000}
+  m_Pivot: {x: 1, y: 0.5}
+--- !u!222 &1300949986
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1300949984}
+  m_CullTransparentMesh: 1
 --- !u!1 &1320581343
 GameObject:
   m_ObjectHideFlags: 0
@@ -2274,7 +2283,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2124765955966576331, guid: fd1a146dae39c604d940b96279ad0ad3, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 1402046954
+      value: 936400400
+      objectReference: {fileID: 0}
+    - target: {fileID: 2124765955966576331, guid: fd1a146dae39c604d940b96279ad0ad3, type: 3}
+      propertyPath: InScenePlacedSourceGlobalObjectIdHash
+      value: 4134329659
       objectReference: {fileID: 0}
     - target: {fileID: 3469311742602265520, guid: fd1a146dae39c604d940b96279ad0ad3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2461,7 +2474,11 @@ PrefabInstance:
       objectReference: {fileID: 2084844862}
     - target: {fileID: 7627134682489023918, guid: 3ec7f16baa3552e4f8a4607a3e315700, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 632256719
+      value: 1112697704
+      objectReference: {fileID: 0}
+    - target: {fileID: 7627134682489023918, guid: 3ec7f16baa3552e4f8a4607a3e315700, type: 3}
+      propertyPath: InScenePlacedSourceGlobalObjectIdHash
+      value: 2406279682
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

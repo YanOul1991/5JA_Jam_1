@@ -151,11 +151,12 @@ public sealed class NetworkPlayer : NetworkBehaviour
       m_player1.GetComponent<Rigidbody>().isKinematic = true;
       m_player2.GetComponent<Rigidbody>().isKinematic = true;
     }
+
     m_inputs.Enable();
     Cursor.lockState = CursorLockMode.Confined;
     Cursor.visible = false;
     m_isReady = true;
-    // GameManager.instance.NewGame();
+    GameManager.instance.NouvellePartie();
 #if UNITY_EDITOR
     // Invoke(nameof(Disconnect_Rpc), 10f);
 #endif
@@ -177,6 +178,9 @@ public sealed class NetworkPlayer : NetworkBehaviour
     m_hostMouseDelta = new Vector2();
     m_clientMouseDelta = new Vector2();
     m_isReady = false;
+    ScoreManager.instance.pannelDefaite.SetActive(false);
+    ScoreManager.instance.pannelVictoire.SetActive(false);
+    m_inputs.Disable();
     OnPlayerDisconnected?.Invoke();
   }
 
