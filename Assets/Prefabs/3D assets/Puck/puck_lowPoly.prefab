@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 81cee3061d3d7cf479f6f60cab1982c0, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 06d2d70eee818234ba487218a96b7dd1, type: 2}
     - target: {fileID: 919132149155446097, guid: 81cee3061d3d7cf479f6f60cab1982c0, type: 3}
       propertyPath: m_Name
       value: puck_lowPoly
@@ -144,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 3597121575
+  GlobalObjectIdHash: 812780161
   InScenePlacedSourceGlobalObjectIdHash: 812780161
   DeferredDespawnTick: 0
   Ownership: 1
@@ -171,6 +175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PuckPhysics
   ShowTopMostFoldoutHeaderGroup: 1
   m_sfxPowerupHit: {fileID: 8300000, guid: 56c45664999e92642ac6db3321cca9be, type: 3}
+  m_sfxPuckHit: {fileID: 0}
 --- !u!114 &3780288666621375373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,3 +257,4 @@ MonoBehaviour:
   Goal2: {fileID: 0}
   puckRespawnPlayer1: {fileID: 0}
   puckRespawnPlayer2: {fileID: 0}
+  m_sfxGoal: {fileID: 0}
