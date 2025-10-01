@@ -12,6 +12,8 @@ public class ScoreManager : NetworkBehaviour
     private NetworkVariable<int> scoreClient = new NetworkVariable<int>();
     public GameObject pannelVictoire; 
     public GameObject pannelDefaite; 
+    public GameObject scoreUI; 
+
     private void Awake()
     {
         if (instance == null)
@@ -100,12 +102,14 @@ public class ScoreManager : NetworkBehaviour
             GagnantClient_ClientRpc();
         }
     }
+
     [Rpc(SendTo.Everyone)]
     private void GagnantHote_ClientRpc()
     {
 
         if (IsServer)
         {
+            ResetScoreRpc();
             pannelVictoire.SetActive(true);
         }
         else
@@ -113,6 +117,23 @@ public class ScoreManager : NetworkBehaviour
             pannelDefaite.SetActive(true);
         }
     }
+
+    [Rpc(SendTo.Everyone)]
+    private void ResetScoreRpc()
+    {
+        if (IsServer)
+        {
+            scoreHote.Value = 0;
+            scoreClient.Value = 0;
+        }
+
+        scoreTxtPlayer1.text = "0";
+        scoreTxtPlayer2.text = "0";
+
+        scoreUI.SetActive(false);
+        Cursor.visible = true;
+    }
+
     /* Fonction RPC pour afficher le panel de victoire pour le client et le panel de défaite pour l'hôte
      - Appelée par le serveur pour tous les clients */
     [Rpc(SendTo.Everyone)]
@@ -121,6 +142,7 @@ public class ScoreManager : NetworkBehaviour
 
         if (IsServer)
         {
+            ResetScoreRpc();
             pannelDefaite.SetActive(true);
         }
         else
