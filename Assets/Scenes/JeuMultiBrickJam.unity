@@ -2939,6 +2939,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2170276120744430113, guid: 23892dc9c039095419cba67d7b9e3e8a, type: 3}
+      propertyPath: Goal1
+      value: 
+      objectReference: {fileID: 1763252990}
+    - target: {fileID: 2170276120744430113, guid: 23892dc9c039095419cba67d7b9e3e8a, type: 3}
+      propertyPath: Goal2
+      value: 
+      objectReference: {fileID: 1763252991}
+    - target: {fileID: 2170276120744430113, guid: 23892dc9c039095419cba67d7b9e3e8a, type: 3}
+      propertyPath: puckRespawnPlayer1
+      value: 
+      objectReference: {fileID: 459272128}
+    - target: {fileID: 2170276120744430113, guid: 23892dc9c039095419cba67d7b9e3e8a, type: 3}
+      propertyPath: puckRespawnPlayer2
+      value: 
+      objectReference: {fileID: 2012503783}
     - target: {fileID: 6208481026086289709, guid: 23892dc9c039095419cba67d7b9e3e8a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.01
@@ -2985,43 +3001,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8351743148499740745, guid: 23892dc9c039095419cba67d7b9e3e8a, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 1770661883
-      objectReference: {fileID: 0}
-    - target: {fileID: 8351743148499740745, guid: 23892dc9c039095419cba67d7b9e3e8a, type: 3}
-      propertyPath: InScenePlacedSourceGlobalObjectIdHash
-      value: 812780161
+      value: 3597121575
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6729262082301107095, guid: 23892dc9c039095419cba67d7b9e3e8a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7976212596662436545}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23892dc9c039095419cba67d7b9e3e8a, type: 3}
---- !u!1 &7976212596662436544 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6729262082301107095, guid: 23892dc9c039095419cba67d7b9e3e8a, type: 3}
-  m_PrefabInstance: {fileID: 7976212596662436543}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7976212596662436545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7976212596662436544}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dee4270af44b76478241a03409d01b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Puck
-  ShowTopMostFoldoutHeaderGroup: 1
-  thrust: 20
-  Goal1: {fileID: 1763252990}
-  Goal2: {fileID: 1763252991}
-  puckRespawnPlayer1: {fileID: 459272128}
-  puckRespawnPlayer2: {fileID: 2012503783}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

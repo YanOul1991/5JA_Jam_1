@@ -30,12 +30,13 @@ public class PuckPhysics : NetworkBehaviour
         m_lastPlayerHit,
         collision.transform.parent.GetComponent<NetworkObject>().NetworkObjectId
       );
+      PlaySfxPowerupHit_Rpc();
     }
   }
 
   [Rpc(SendTo.Everyone)]
   private void PlaySfxPowerupHit_Rpc()
   {
-    
+    Camera.main.gameObject.GetComponent<AudioSource>().PlayOneShot(m_sfxPowerupHit);
   }
 }
