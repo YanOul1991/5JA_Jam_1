@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 437914549971606783}
   - component: {fileID: 1121325202312150998}
   - component: {fileID: 130041887173794570}
-  - component: {fileID: 4065967732311055432}
   - component: {fileID: 4730283138705487430}
   - component: {fileID: 2126597375569709499}
   - component: {fileID: 3439316813563715283}
+  - component: {fileID: -6733908288622575002}
   m_Layer: 0
   m_Name: Mallet
   m_TagString: Player
@@ -102,8 +102,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6945203631114569819}
   serializedVersion: 5
-  m_Mass: 250
-  m_LinearDamping: 87.5
+  m_Mass: 125
+  m_LinearDamping: 80
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -121,27 +121,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 116
   m_CollisionDetection: 2
---- !u!65 &4065967732311055432
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6945203631114569819}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 8
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.84, y: 1.15, z: 0.85}
-  m_Center: {x: 0, y: 0.56, z: 0}
 --- !u!114 &4730283138705487430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 3387432364
+  GlobalObjectIdHash: 1796666
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 8
@@ -230,3 +209,25 @@ MonoBehaviour:
   UseRigidBodyForMotion: 1
   AutoUpdateKinematicState: 1
   AutoSetKinematicOnDespawn: 1
+--- !u!64 &-6733908288622575002
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6945203631114569819}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2534964839176971238, guid: 1fefc1bf598c7f146a0006078f456637, type: 3}
