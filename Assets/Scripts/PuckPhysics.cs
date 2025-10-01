@@ -5,6 +5,7 @@ public class PuckPhysics : NetworkBehaviour
 {
   public static PuckPhysics Singleton;
   private ulong m_lastPlayerHit;
+  [field: SerializeField] private AudioClip m_sfxPowerupHit;
 
   private void Awake()
   {
@@ -13,7 +14,7 @@ public class PuckPhysics : NetworkBehaviour
     else
       Destroy(gameObject);
   }
-  
+
   void OnCollisionEnter(Collision collision)
   {
     if (!IsServer) return;
@@ -30,5 +31,11 @@ public class PuckPhysics : NetworkBehaviour
         collision.transform.parent.GetComponent<NetworkObject>().NetworkObjectId
       );
     }
+  }
+
+  [Rpc(SendTo.Everyone)]
+  private void PlaySfxPowerupHit_Rpc()
+  {
+    
   }
 }
