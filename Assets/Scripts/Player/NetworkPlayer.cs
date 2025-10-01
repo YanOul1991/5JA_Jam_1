@@ -9,6 +9,8 @@ using Unity.Netcode.Transports.UTP;
 public sealed class NetworkPlayer : NetworkBehaviour
 {
   static public NetworkPlayer Singleton;
+  static private string s_ipServer;
+
   [field: SerializeField] private GameObject m_player1;
   [field: SerializeField] private GameObject m_player2;
   [field: SerializeField] private Transform m_limit_x;
@@ -43,15 +45,6 @@ public sealed class NetworkPlayer : NetworkBehaviour
     m_clientMouseDelta = new Vector2();
 
     Application.targetFrameRate = 120;
-  }
-
-  private void Start()
-  {
-#if !UNITY_EDITOR
-    NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("10.40.73.7", 7777);
-#else
-    NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("127.0.0.1", 7777);
-#endif
   }
 
   public override void OnNetworkSpawn()
@@ -89,6 +82,15 @@ public sealed class NetworkPlayer : NetworkBehaviour
 
   //////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////
+
+  public void SetIP(string _value)
+  {
+#if UNITY_EDITOR
+    Debug.Log($"IP address = {_value}");
+#endif
+    // Local = 127.0.0.1
+    NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData(_value, 7777);
+  }
 
   private void OnClientConnected(ulong obj)
   {
@@ -165,6 +167,8 @@ public sealed class NetworkPlayer : NetworkBehaviour
   [Rpc(SendTo.Everyone)]
   public void Disconnect_Rpc()
   {
+    Camera.main.transform.localEulerAngles = new Vector3(90, 0, 0);
+
     if (IsServer)
     {
       NetworkManager.Singleton.SpawnManager.SpawnedObjects[m_player1.GetComponent<NetworkObject>().NetworkObjectId].Despawn(true);

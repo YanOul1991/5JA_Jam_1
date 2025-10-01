@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SceneDataJeu : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class SceneDataJeu : MonoBehaviour
   [field: SerializeField] public Transform Limit_x { get; private set; }
   [field: SerializeField] public Transform Limit_center { get; private set; }
   [field: SerializeField] public Vector3 DefaultSpawn { get; private set; }
+
+  [field: SerializeField] public TMP_InputField m_ipInput;
 
   [Header("UI elements")]
   [field: SerializeField] private GameObject m_mainMenuUI;
@@ -41,21 +44,42 @@ public class SceneDataJeu : MonoBehaviour
     NetworkManager.Singleton.StartClient();
     HideOptions();
   }
-  
+
   private void DisplayOptions()
   {
+#if UNITY_EDITOR
+    Debug.Log("Displaying options");
+#endif
     NetworkPlayer.Singleton.OnPlayerDisconnected -= DisplayOptions;
     m_boutonStart_host.onClick.AddListener(StartHost);
     m_boutonStart_client.onClick.AddListener(StartClient);
+
+    m_ipInput.onEndEdit.AddListener(OnIpFieldEdited);
+
+    m_ipInput.gameObject.SetActive(true);
     m_mainMenuUI.SetActive(true);
   }
 
   private void HideOptions()
   {
+#if UNITY_EDITOR
+    Debug.Log("Hiding options");
+#endif
+    NetworkPlayer.Singleton.OnPlayerDisconnected += DisplayOptions;
+
     m_boutonStart_host.onClick.RemoveListener(StartHost);
     m_boutonStart_client.onClick.RemoveListener(StartClient);
-    NetworkPlayer.Singleton.OnPlayerDisconnected += DisplayOptions;
+
+    m_ipInput.onEndEdit.RemoveAllListeners();
+
+    m_ipInput.gameObject.SetActive(false);
+
     m_mainMenuUI.SetActive(false);
     m_scoreUI.SetActive(true);
+  }
+
+  private void OnIpFieldEdited(string input)
+  {
+    NetworkPlayer.Singleton.SetIP(input);
   }
 }
