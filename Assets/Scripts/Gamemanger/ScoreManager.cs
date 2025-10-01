@@ -40,57 +40,39 @@ public class ScoreManager : NetworkBehaviour
         scoreClient.OnValueChanged += OnChangementPointageClient;
     }
 
-    /* Méthode appelée lors de la désactivation de l'objet réseau
-    - Se désabonne des événements de changement de valeur des scores */
     public override void OnNetworkDespawn()
     {
         base.OnNetworkDespawn();
         scoreHote.OnValueChanged -= OnChangementPointageHote;
         scoreClient.OnValueChanged -= OnChangementPointageClient;
     }
-    /* Fonction pour augmenter le score de l'hôte
-     - On incrémente le score de l'hôte
-     - On vérifie si la partie est terminée*/
+
     public void AugmenteHoteScore()
     {
         scoreHote.Value++;
         VerifieFinPartie();
     }
 
-    /* Fonction pour augmenter le score du client
-     - On incrémente le score du client
-     - On vérifie si la partie est terminée*/
     public void AugmenteScoreClient()
     {
         scoreClient.Value++;
         VerifieFinPartie();
     }
 
-    // Méthode pour gérer le changement de valeur du score de l'hôte
-    // Elle est appelée à chaque fois que le score de l'hôte change
-    // Elle met à jour le texte affiché avec les scores actuels
     private void OnChangementPointageHote(int ancienScoreHote, int nouveauScoreHote)
     {
-        if (ancienScoreHote == nouveauScoreHote) return; // Évite de mettre à jour si le score n'a pas changé
+        if (ancienScoreHote == nouveauScoreHote) return; 
 
         scoreTxtPlayer1.text = scoreHote.Value + "";
     }
 
-    // Méthode pour gérer le changement de valeur du score du client
-    // Elle est appelée à chaque fois que le score du client change
-    // Elle met à jour le texte affiché avec les scores actuels
     private void OnChangementPointageClient(int ancienScoreClient, int nouveauScoreClient)
     {
-        if (ancienScoreClient == nouveauScoreClient) return; // Évite de mettre à jour si le score n'a pas changé
+        if (ancienScoreClient == nouveauScoreClient) return; 
 
         scoreTxtPlayer2.text = scoreClient.Value + "";
     }
 
-
-    /* Fonction pour vérifier si la partie est terminée
-     - Si le score de l'hôte ou du client atteint le pointage cible, on affiche le panel de victoire ou de défaite
-     - On appelle la fonction GagnantHote_ClientRpc ou GagnantClient_ClientRpc selon le cas
-     - On appelle la fonction FinPartie du GameManager pour terminer la partie */
     void VerifieFinPartie()
     {
         if (scoreHote.Value >= pointageCible)
@@ -134,8 +116,6 @@ public class ScoreManager : NetworkBehaviour
         Cursor.visible = true;
     }
 
-    /* Fonction RPC pour afficher le panel de victoire pour le client et le panel de défaite pour l'hôte
-     - Appelée par le serveur pour tous les clients */
     [Rpc(SendTo.Everyone)]
     private void GagnantClient_ClientRpc()
     {
