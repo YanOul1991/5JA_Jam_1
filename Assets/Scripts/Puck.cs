@@ -16,6 +16,8 @@ public class Puck : NetworkBehaviour
     public GameObject puckRespawnPlayer1;
     public GameObject puckRespawnPlayer2;
 
+    [field: SerializeField] private AudioClip m_sfxGoal;
+
 
     void Awake()
     {
@@ -40,11 +42,13 @@ public class Puck : NetworkBehaviour
         if (collision.gameObject == Goal1)
         {
             ScoreManager.instance.AugmenteHoteScore();
+            PlaySfxGoal_Rpc();
             PlacementPuckGoal(puckRespawnPlayer2.transform.position);
         }
         else if (collision.gameObject == Goal2)
         {
             ScoreManager.instance.AugmenteScoreClient();
+            PlaySfxGoal_Rpc();
             PlacementPuckGoal(puckRespawnPlayer1.transform.position);
         }
     }
@@ -70,11 +74,10 @@ public class Puck : NetworkBehaviour
         rb = GetComponent<Rigidbody>();
         rb.AddForce(0, 0, thrust, ForceMode.Impulse);
     }
-    
-    // [Rpc(SendTo.Everyone)]
-    // private void Shake_Rpc()
-    // {
-    //    if (camShaker == null) return;
-    //    camShaker.Shake(0.2f, 0.2f, 20f);
-    // }
+
+    [Rpc(SendTo.Everyone)]
+    private void PlaySfxGoal_Rpc()
+    {
+        Camera.main.gameObject.GetComponent<AudioSource>().PlayOneShot(m_sfxGoal);
+    }
 }
